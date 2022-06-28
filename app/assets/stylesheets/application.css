@@ -12,4 +12,9 @@
  *
  *= require_tree .
  *= require_self
- */
+*/
+
+/* ::-webkit-input-placeholder,
+::placeholder {
+  font-weight: 200 !important;
+} */

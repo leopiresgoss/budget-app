@@ -8,9 +8,18 @@ module.exports = {
     './app/views/**/*.{erb,haml,html,slim}'
   ],
   theme: {
+    colors: {
+      'main': '#3778c2',
+      'second': '#5fb523',
+      'black': '#434b54',
+      'placeholder': 'rgb(107 114 128))',
+      'gray-100': 'rgba(243, 244, 246, 1)',
+      'gray-500': 'rgba(200, 200, 200, 1)',
+      'white': '#fff'
+    },
     extend: {
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        sans: ['Proxima Nova', ...defaultTheme.fontFamily.sans],
       },
     },
   },
