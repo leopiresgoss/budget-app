@@ -46,7 +46,8 @@ RSpec.describe Group, type: :model do
       it 'should sum transactions only for the same group' do
         subject.budget_transactions.create(name: 'Clothes', amount: 5.2, author: @user)
         subject.budget_transactions.create(name: 'T-shirt', amount: 1, author: @user)
-        Group.create(name: 'Laundry', icon: 'icon', author: @user).budget_transactions.create(name: 'other group', amount: 10, author: @user)
+        Group.create(name: 'Laundry', icon: 'icon', author: @user).budget_transactions.create(name: 'other group',
+                                                                                              amount: 10, author: @user)
 
         expect(subject.total_amount.to_f).to be(6.2)
       end
