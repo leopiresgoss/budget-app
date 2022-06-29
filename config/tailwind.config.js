@@ -14,8 +14,9 @@ module.exports = {
       'black': '#434b54',
       'placeholder': 'rgb(107 114 128))',
       'gray-100': 'rgba(243, 244, 246, 1)',
-      'gray-500': 'rgba(200, 200, 200, 1)',
-      'white': '#fff'
+      'gray-500': '#555e67',
+      'white': '#fff',
+      'green': '#60b625',
     },
     extend: {
       fontFamily: {
