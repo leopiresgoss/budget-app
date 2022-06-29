@@ -4,4 +4,8 @@ class Group < ApplicationRecord
 
   validates_associated :author
   validates :name, :icon, presence: true
+
+  def total_amount
+    budget_transactions.sum(:amount)
+  end
 end

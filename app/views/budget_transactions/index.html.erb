@@ -1,0 +1,38 @@
+<section id="transactions-index" class="p-5 grow flex flex-col gap-5 overflow-auto">
+  <div class="bg-white mb-auto">
+    <div class="flex p-2 items-center gap-2 border-b border-gray-100">
+      <%=
+        image_tag image_validation(@group.icon), class: 'w-1/4'
+      %>
+      <div>
+        <p class="text-gray-500 text-lg"><%= @group.name %></p>
+        <p class="mt pt text-gray-500">
+          Total amount:
+          <strong>
+            $<%= number_with_precision(@group.total_amount, precision: 2) %>
+          </strong>
+         </p>
+      </div>
+    </div>
+    <ul>
+      <% @transactions.each do |item| %>
+        <li class="border-b border-gray-100 bg-white flex p-2 items-center gap-2">
+          <div class="grow">
+            <p class="text-gray-500"><%= item.name %></p>
+            <p class="text-xs font-light text-gray-500">Created at: <%= time_tag(item.created_at) %></p>
+            <p class="mt-2 pt-2 text-gray-500 text-sm">
+              Total payment:
+              <strong>
+                $<%= number_with_precision(item.amount, precision: 2) %>
+              </strong>
+            </p>
+          </div>
+        </li>
+      <% end %>
+  </ul>
+  </div>
+  <div class="-m-5 bg-green flex w-screen p-5">
+      <%= link_to 'ADD NEW TRANSACTION', new_group_budget_transaction_path(@group.id),
+        class: "p-5 text-center w-full border border-white rounded-md text-white text-lg" %>
+  </div>
+</section>

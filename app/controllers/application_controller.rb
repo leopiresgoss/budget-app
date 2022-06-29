@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
       u.permit(:name, :email, :password, :current_password)
     end
   end
+
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      render template: 'devise/splash', notice: 'You should Log In or Sign Up to access the app'
+    end
+  end
 end

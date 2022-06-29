@@ -1,0 +1,28 @@
+<section id="categories-index" class="p-5 grow flex flex-col gap-5 overflow-auto">
+  <ul class="mb-auto">
+    <% @categories.each do |item| %>
+      <li>
+        <%= link_to group_budget_transactions_path(item.id),
+            title: item.name,
+            class: 'bg-white flex p-2 mb-3 items-center gap-2' do %>
+          <%=
+            image_tag image_validation(item.icon), class: 'w-1/4'
+          %>
+          <div class="grow">
+            <p class="text-gray-500"><%= item.name %></p>
+            <p class="mt-2 pt-2 border-t border-gray-100 text-gray-500 text-sm">
+              Total amount: 
+              <strong>
+                $<%= number_with_precision(item.total_amount, precision: 2) %>
+              </strong>
+            </p>        
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="-m-5 bg-green flex w-screen p-5">
+      <%= link_to 'ADD NEW CATEGORY', new_group_path, class: "p-5 text-center w-full border border-white rounded-md text-white text-lg" %>
+  </div>
+</section>

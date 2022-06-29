@@ -28,7 +28,7 @@ RSpec.describe 'Login page', type: :system do
   it 'When I click the submit button after filling in the username and the password with correct data, I am redirected
        to the root page' do
     visit new_user_session_path
-    User.create(id: 21, name: 'Tester', email: 'capybara@test.com', password: 'abc123')
+    User.create(name: 'Tester', email: 'capybara@test.com', password: 'abc123')
     within('#new_user') do
       fill_in 'Email', with: 'capybara@test.com'
       fill_in 'Password', with: 'abc123'

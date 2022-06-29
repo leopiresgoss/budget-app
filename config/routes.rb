@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :groups, only: %i[index new create], path: '/categories'
-  resources :budget_transactions, only: %i[index new create], path: 'transactions'
+  resources :groups, only: %i[index new create], path: '/categories' do
+    resources :budget_transactions, only: %i[index new create], path: '/transactions'  
+  end
 
   root 'groups#index'
 end
