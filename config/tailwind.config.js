@@ -17,12 +17,7 @@ module.exports = {
       'gray-500': '#555e67',
       'white': '#fff',
       'green': '#60b625',
-    },
-    extend: {
-      fontFamily: {
-        sans: ['Proxima Nova', ...defaultTheme.fontFamily.sans],
-      },
-    },
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
