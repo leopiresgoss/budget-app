@@ -1,0 +1,10 @@
+<nav class="px-5 py-2 bg-main">
+  <ul class="flex items-baseline justify-center">
+    <li class="mr-auto">
+      <%= render "navbar/#{mode_text}_left", last_page: last_page || root_path %> 
+    </li>
+    <li class="mr-auto">
+      <p class="text-white text-xl text-center"><%= text %></p>
+    </li>
+  </ul>
+</nav>
