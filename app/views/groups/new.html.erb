@@ -1,0 +1,13 @@
+<%= render "navbar/navbar", text: "NEW CATEGORY", mode_text: "page", last_page: root_path %> 
+<%= form_with url: groups_path, method: :post, local: true, scope: :group,
+  class: "mt-8 p-5 bg-white border-y border-gray-500" do |f| %>
+  <div class="field border-b border-gray-500">
+    <%= f.text_field :name, placeholder: "Name", class: "w-full px-0 border-none" %>
+  </div>
+  <div class="field border-b border-gray-500">
+    <%= f.text_field :icon, placeholder: "Icon URL", class: "w-full px-0 border-none" %>
+  </div>
+  <div class="actions mt-5 flex">
+    <%= f.submit "SUBMIT", class: "p-3 text-center text-white bg-main w-full" %>
+  </div>
+<% end %>
