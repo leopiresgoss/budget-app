@@ -1,3 +1,4 @@
+<%= render "navbar/navbar", text: "LOG IN", mode_text: "page", last_page: root_path %> 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name),
     html: { data: { turbo: false }, class: 'mt-8 p-5 bg-white border-y border-gray-500'}) do |f|
   %>

@@ -1,0 +1,14 @@
+<%= render "navbar/navbar", text: "PROFILE", mode_text: "page", last_page: root_path %>
+<section id="profile-index" class="p-5 grow flex flex-col gap-5 overflow-auto bg-white">
+    <div class="flex p-2 items-center gap-2 border-b border-gray-100">
+      <p>User name: <strong><%= current_user.name %></strong></p>
+    </div>
+    <div class="mt-auto">
+      <%=
+        button_to 'SIGN OUT',
+        destroy_user_session_path,
+        method: :delete,
+        class: 'p-3 text-center text-white bg-main w-full'
+        %>
+    </div>
+</section>

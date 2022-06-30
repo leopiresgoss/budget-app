@@ -1,3 +1,4 @@
+<%= render "navbar/navbar", text: "NEW TRANSACTION", mode_text: "page", last_page: group_budget_transactions_path(@group.id) %> 
 <%= form_with url: group_budget_transactions_path(@group.id),
     method: :post, local: true, scope: :budget_transaction,
     class: "mt-8 p-5 bg-white border-y border-gray-500" do |f| %>
