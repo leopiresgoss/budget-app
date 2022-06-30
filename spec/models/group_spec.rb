@@ -27,30 +27,14 @@ RSpec.describe Group, type: :model do
     expect(subject).to_not be_valid
   end
 
-  context 'budget_transactions many-to-many relationship' do
-    it 'should not add a transaction to groups when the author is not the same' do
-      user2 = User.create(name: 'Maria', email: 'maria@test.com', password: 'abc123')
-      transaction2 = BudgetTransaction.create(name: 'Clothes', amount: 5.2, author: user2)
-
-      expect { subject.budget_transactions << transaction2 }.to raise_error('Different authors')
-    end
-
-    it 'should add a group to budget_transactions when the author is the same' do
-      transaction = BudgetTransaction.create(name: 'Clothes', amount: 5.2, author: @user)
-      subject.budget_transactions << transaction
-
-      expect(subject.budget_transactions).to include(transaction)
-    end
-
-    context '#total_amount' do
-      it 'should sum transactions only for the same group' do
-        subject.budget_transactions.create(name: 'Clothes', amount: 5.2, author: @user)
-        subject.budget_transactions.create(name: 'T-shirt', amount: 1, author: @user)
-        Group.create(name: 'Laundry', icon: 'icon', author: @user).budget_transactions.create(name: 'other group',
-                                                                                              amount: 10, author: @user)
-
-        expect(subject.total_amount.to_f).to be(6.2)
-      end
+  context '#total_amount' do
+    it 'should sum transactions only for the same group' do
+      group = subject
+      BudgetTransaction.create(name: 'Clothes', amount: 5.2, author: @user, group_ids: [group.id])
+      BudgetTransaction.create(name: 'T-shirt', amount: 1, author: @user, group_ids: [group.id])
+      false_group = Group.create(name: 'Laundry', icon: 'icon', author: @user)
+      BudgetTransaction.create(name: 'other group', amount: 10, author: @user, group_ids: [false_group.id])
+      expect(subject.total_amount.to_f).to be(6.2)
     end
   end
 end

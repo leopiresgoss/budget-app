@@ -1,6 +1,6 @@
 <%= render "navbar/navbar", text: "CATEGORIES", mode_text: "index", last_page: nil %> 
-<section id="categories-index" class="p-5 grow flex flex-col gap-5 overflow-auto">
-  <ul class="mb-auto">
+<section id="categories-index" class="p-5 grow flex flex-col gap-5 justify-between overflow-auto">
+  <ul class="mb-5">
     <% @categories.each do |item| %>
       <li>
         <%= link_to group_budget_transactions_path(item.id),

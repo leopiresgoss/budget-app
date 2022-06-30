@@ -15,7 +15,11 @@
  *= require font-awesome
 */
 
-/* ::-webkit-input-placeholder,
-::placeholder {
-  font-weight: 200 !important;
-} */
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('proxima_nova.otf') format('opentype');
+}
+
+html {
+  font-family: 'Proxima Nova', system-ui, sans-serif !important;
+}

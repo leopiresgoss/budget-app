@@ -36,6 +36,8 @@ gem 'devise'
 
 gem 'font-awesome-rails'
 
+gem 'bullet', group: 'development'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
