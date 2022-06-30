@@ -11,14 +11,14 @@ class BudgetTransactionsController < ApplicationController
   end
 
   def create
-    group = current_user.groups.find(params[:group_id])
-    transaction = group.budget_transactions.create(**transaction_params, author: current_user)
+    transaction = BudgetTransaction.new(**budget_transaction_params, author: current_user)
+
     respond_to do |format|
       format.html do
-        if transaction.id
-          redirect_to group_budget_transactions_path(group.id), notice: 'Transaction added!'
+        if transaction.save
+          redirect_to root_path, notice: 'Transaction added!'
         else
-          redirect_to new_group_budget_transaction_path(group.id), alert: 'Please, fill all fields'
+          redirect_to new_group_budget_transaction_path(params[:group_id]), alert: 'Please, fill all fields'
         end
       end
     end
@@ -26,7 +26,7 @@ class BudgetTransactionsController < ApplicationController
 
   private
 
-  def transaction_params
-    params.require(:budget_transaction).permit(:name, :amount)
+  def budget_transaction_params
+    params.require(:budget_transaction).permit(:name, :amount, group_ids: [])
   end
 end

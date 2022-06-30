@@ -5,8 +5,8 @@ RSpec.describe 'Groups(Categories)#index', type: :system do
     test_user = User.create(name: 'Tom', email: 'tom@example.com', password: 'password')
     @group = Group.create(author: test_user, name: 'food', icon: 'https://uxwing.com/wp-content/themes/uxwing/download/20-food-and-drinks/meal-food.png')
     Group.create(author: test_user, name: 'food2', icon: 'https://')
-    @group.budget_transactions.create(author: test_user, name: 'amount test 1', amount: 1)
-    @group.budget_transactions.create(author: test_user, name: 'amount test 2', amount: 2.5)
+    BudgetTransaction.create(author: test_user, name: 'amount test 1', amount: 1, group_ids: [@group.id])
+    BudgetTransaction.create(author: test_user, name: 'amount test 2', amount: 2.5, group_ids: [@group.id])
 
     visit new_user_session_path
     fill_in 'Email', with: 'tom@example.com'
