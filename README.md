@@ -1,6 +1,13 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
 # Budget App
+> Budget App is a mobile web application where users can manage their expenses and organize them in categories.
+
+![screenshot](https://user-images.githubusercontent.com/61767582/176782109-ba6d5205-a167-4caf-b057-3009f7f24c1f.png)
+
+
+## Live Demo
+[Live Demo Link](https://budget-app-2022.herokuapp.com/)
 
 ## Built With
 
