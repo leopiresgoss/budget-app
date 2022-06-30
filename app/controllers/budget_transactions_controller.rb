@@ -16,7 +16,8 @@ class BudgetTransactionsController < ApplicationController
     respond_to do |format|
       format.html do
         if transaction.save
-          redirect_to root_path, notice: 'Transaction added!'
+          id = transaction.groups.first.id
+          redirect_to group_budget_transactions_path(id), notice: 'Transaction added!'
         else
           redirect_to new_group_budget_transaction_path(params[:group_id]), alert: 'Please, fill all fields'
         end
