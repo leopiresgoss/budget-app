@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
-  database: budget_app_production
-  username: budget_app
-  password: <%= ENV["BUDGET_APP_DATABASE_PASSWORD"] %>
+  database: <%= ENV["BUDGET_APP_DB_NAME"] %>
+  username: <%= ENV["BUDGET_APP_DB_USERNAME"] %>
+  password: <%= ENV["BUDGET_APP_DB_PASSWORD"] %>
+  host: <%= ENV["BUDGET_APP_HOST"] %>
+  port: <%= ENV["BUDGET_APP_PORT"] %>
