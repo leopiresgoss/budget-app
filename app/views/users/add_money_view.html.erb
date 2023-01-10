@@ -1,0 +1,16 @@
+<%= form_with url: add_money_path, method: :patch, class: "mt-8 p-5 bg-white border-y border-gray-500" do |f| %>
+  <div class="field border-b border-gray-500">
+      <p class="border-gray-100 text-gray-500 text-l">
+        Total available: 
+        <strong>
+          $<%= number_with_precision(current_user.balance, precision: 2) %>
+        </strong>
+      </p>
+  </div>
+  <div class="field border-b border-gray-500">
+    <%= f.number_field :amount, placeholder: 'Add', class: "w-full px-0 border-none", step: 0.01, min: 0.01 %>
+  </div>
+  <div class="actions mt-5 flex">
+    <%= f.submit "SUBMIT", class: "p-3 text-center text-white bg-main w-full" %>
+  </div>
+<% end %>

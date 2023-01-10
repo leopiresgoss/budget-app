@@ -5,5 +5,8 @@ Rails.application.routes.draw do
     resources :budget_transactions, only: %i[index new create], path: '/transactions'  
   end
 
+  get '/add-money', to: 'users#add_money_view', as: 'add_money_view'
+  patch '/add-money', to: 'users#add_money', as: 'add_money'
+
   root 'groups#index'
 end
