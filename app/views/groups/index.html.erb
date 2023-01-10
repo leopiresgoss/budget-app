@@ -1,6 +1,22 @@
 <%= render "navbar/navbar", text: "CATEGORIES", mode_text: "index", last_page: nil %> 
 <section id="categories-index" class="p-5 grow flex flex-col gap-5 justify-between overflow-auto">
   <ul class="mb-5">
+    <li>
+      <div class="bg-white flex p-2 mb-3 items-center gap-2">
+        <%=
+          image_tag 'money.png', class: 'w-1/4'
+        %>
+        <div class="grow flex flex-col justify-between">
+          <p class="border-gray-100 text-gray-500 text-l">
+            Total available: 
+            <strong>
+              $<%= number_with_precision(current_user.balance, precision: 2) %>
+            </strong>
+          </p>
+          <%= link_to 'Add More', root_path, class: "mt-2 p-2 w-max text-sm text-white font-bold rounded bg-green" %>       
+        </div>
+      </div>
+    </li>
     <% @categories.each do |item| %>
       <li>
         <%= link_to group_budget_transactions_path(item.id),
