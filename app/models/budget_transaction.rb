@@ -6,4 +6,18 @@ class BudgetTransaction < ApplicationRecord
   validates :name, :amount, presence: true
   validates :amount, numericality: true, comparison: { greater_than_or_equal_to: 0.01 }
   validates :group_ids, length: { minimum: 1 }
+  validate :budget_available, on: :create
+
+  private
+
+  def budget_available
+    if BigDecimal(author.balance.to_s) - amount <= 0
+      errors.add(:base, "You don't have enough money to make this transaction, please add more money first")
+    end
+  end
+
+  def update_author_balance
+    author.balance -= amount
+    author.save
+  end
 end
