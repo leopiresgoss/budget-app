@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
   describe "User's balance" do
     it 'should exist after creating the model' do
       subject.save
-      expect(subject.balance).equal? 0.0
+      expect(subject.balance).equal? 0
     end
   end
 end

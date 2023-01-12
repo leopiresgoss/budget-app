@@ -1,6 +1,7 @@
 class BudgetTransaction < ApplicationRecord
   belongs_to :author, class_name: 'User'
   has_and_belongs_to_many :groups
+  after_create :update_author_balance
 
   validates_associated :author
   validates :name, :amount, presence: true
@@ -11,9 +12,11 @@ class BudgetTransaction < ApplicationRecord
   private
 
   def budget_available
-    if BigDecimal(author.balance.to_s) - amount <= 0
-      errors.add(:base, "You don't have enough money to make this transaction, please add more money first")
-    end
+    return unless BigDecimal(author.balance.to_s) - amount <= 0
+
+    message = "You don't have enough money to make this transaction, please add more money first"
+    UserMailer.with(user: author, message:).budget_notification.deliver_later(wait: 2.minutes)
+    errors.add(:base, message)
   end
 
   def update_author_balance
