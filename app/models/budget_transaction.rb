@@ -7,7 +7,7 @@ class BudgetTransaction < ApplicationRecord
   validates :name, :amount, presence: true
   validates :amount, numericality: true, comparison: { greater_than_or_equal_to: 0.01 }
   validates :group_ids, length: { minimum: 1 }
-  validate :budget_available, on: :create
+  validate :budget_available, on: :create, if: :amount
 
   private
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Budget Transactions#new', type: :system do
   subject do
-    user = User.create(name: 'Tom', email: 'tom@example.com', password: 'password')
+    user = User.create(name: 'Tom', email: 'tom@example.com', password: 'password', balance: 20)
     @group = user.groups.create(name: 'group1', icon: 'icon')
     @group2 = user.groups.create(name: 'group2', icon: 'icon')
 
@@ -34,7 +34,7 @@ RSpec.describe 'Budget Transactions#new', type: :system do
     visit new_group_budget_transaction_path(@group.id)
     click_button 'SUBMIT'
     expect(page).to have_current_path(new_group_budget_transaction_path(@group.id))
-    expect(page).to have_content('Please, fill all fields')
+    expect(page).to have_content("Name can't be blank")
   end
 
   it 'should NOT be valid when amount is missing' do
@@ -43,7 +43,18 @@ RSpec.describe 'Budget Transactions#new', type: :system do
     fill_in 'Transaction Name', with: 'Test'
     click_button 'SUBMIT'
     expect(page).to have_current_path(new_group_budget_transaction_path(@group.id))
-    expect(page).to have_content('Please, fill all fields')
+    expect(page).to have_content("Amount can't be blank")
+  end
+   # TODO: SET REDIS, SIDEKIQ FOR TESTING
+  it 'should NOT be valid when amount is missing' do
+    subject
+    visit new_group_budget_transaction_path(@group.id)
+    fill_in 'Transaction Name', with: 'Test'
+    fill_in 'Amount', with: 600.70
+    check 'group1'
+    click_button 'SUBMIT'
+    expect(page).to have_current_path(new_group_budget_transaction_path(@group.id))
+    expect(page).to have_content("Amount can't be blank")
   end
 
   # it 'should NOT be valid when name is missing' do
