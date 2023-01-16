@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BudgetTransaction, type: :model do
   subject do
-    @user = User.create(name: 'Jhon', email: 'test123@test.com', password: 'abc123')
+    @user = User.create(name: 'Jhon', email: 'test123@test.com', password: 'abc123', balance: 20)
     @group = @user.groups.create(name: 'group1', icon: 'icon')
     BudgetTransaction.new(name: 'Buy T-shirt', amount: 5.69, author: @user, group_ids: [@group.id])
   end
@@ -36,5 +36,10 @@ RSpec.describe BudgetTransaction, type: :model do
   it 'Should not be valid when a group_ids is nil' do
     subject.group_ids = []
     expect(subject).to_not be_valid
+  end
+
+  it "Should reduce the author's balance" do
+    subject.save
+    expect(subject.author.balance.to_s).to eq '14.31'
   end
 end

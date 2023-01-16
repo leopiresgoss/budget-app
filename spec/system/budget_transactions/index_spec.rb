@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Budget Transactions#index', type: :system do
   subject do
-    user = User.create(name: 'Tom', email: 'tom@example.com', password: 'password')
+    user = User.create(name: 'Tom', email: 'tom@example.com', password: 'password', balance: 30)
     @group = user.groups.create(name: 'group', icon: 'https://uxwing.com/wp-content/themes/uxwing/download/20-food-and-drinks/meal-food.png')
     BudgetTransaction.create(author: user, name: 'test-1', amount: 5, group_ids: [@group.id])
     BudgetTransaction.create(author: user, name: 'test-2', amount: 2, group_ids: [@group.id])

@@ -19,7 +19,8 @@ class BudgetTransactionsController < ApplicationController
           id = transaction.groups.first.id
           redirect_to group_budget_transactions_path(id), notice: 'Transaction added!'
         else
-          redirect_to new_group_budget_transaction_path(params[:group_id]), alert: 'Please, fill all fields'
+          redirect_to new_group_budget_transaction_path(params[:group_id]),
+                      alert: transaction.errors.full_messages.join(', ')
         end
       end
     end
