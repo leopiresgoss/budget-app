@@ -45,8 +45,8 @@ RSpec.describe 'Budget Transactions#new', type: :system do
     expect(page).to have_current_path(new_group_budget_transaction_path(@group.id))
     expect(page).to have_content("Amount can't be blank")
   end
-   # TODO: SET REDIS, SIDEKIQ FOR TESTING
-  it 'should NOT be valid when amount is missing' do
+
+  it 'should NOT be valid when you dont have enough money' do
     subject
     visit new_group_budget_transaction_path(@group.id)
     fill_in 'Transaction Name', with: 'Test'
@@ -54,7 +54,7 @@ RSpec.describe 'Budget Transactions#new', type: :system do
     check 'group1'
     click_button 'SUBMIT'
     expect(page).to have_current_path(new_group_budget_transaction_path(@group.id))
-    expect(page).to have_content("Amount can't be blank")
+    expect(page).to have_content("You don't have enough money to make this transaction, please add more money first")
   end
 
   # it 'should NOT be valid when name is missing' do
