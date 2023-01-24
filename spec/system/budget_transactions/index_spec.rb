@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Budget Transactions#index', type: :system do
   subject do
-    user = User.create(name: 'Tom', email: 'tom@example.com', password: 'password', balance: 30)
+    user = create(:user, email: 'tom@example.com', password: 'password', balance: 30)
     @group = user.groups.create(name: 'group', icon: 'https://uxwing.com/wp-content/themes/uxwing/download/20-food-and-drinks/meal-food.png')
-    BudgetTransaction.create(author: user, name: 'test-1', amount: 5, group_ids: [@group.id])
-    BudgetTransaction.create(author: user, name: 'test-2', amount: 2, group_ids: [@group.id])
+    create(:budget_transaction, author: user, name: 'test-1', amount: 5, group_ids: [@group.id])
+    create(:budget_transaction, author: user, name: 'test-2', amount: 2, group_ids: [@group.id])
 
     wrong_group = user.groups.create(name: 'wrong group', icon: 'icon')
-    BudgetTransaction.create(author: user, name: 'test-3', amount: 10, group_ids: [wrong_group.id])
+    create(:budget_transaction, author: user, amount: 10, group_ids: [wrong_group.id])
 
     visit new_user_session_path
     fill_in 'Email', with: 'tom@example.com'

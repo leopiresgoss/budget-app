@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Budget Transactions#new', type: :system do
   subject do
-    user = User.create(name: 'Tom', email: 'tom@example.com', password: 'password', balance: 20)
+    user = create(:user, email: 'tom@example.com', password: 'password', balance: 20)
     @group = user.groups.create(name: 'group1', icon: 'icon')
     @group2 = user.groups.create(name: 'group2', icon: 'icon')
 

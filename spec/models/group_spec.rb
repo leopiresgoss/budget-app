@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Group, type: :model do
   subject do
-    @user = User.create(name: 'Jhon', email: 'test123@test.com', password: 'abc123', balance: 20)
-    Group.new(name: 'Foods', icon: 'icon', author: @user)
+    @user = create(:user)
+    build(:group, author: @user)
   end
 
   before { subject.save }
@@ -30,10 +30,10 @@ RSpec.describe Group, type: :model do
   context '#total_amount' do
     it 'should sum transactions only for the same group' do
       group = subject
-      BudgetTransaction.create(name: 'Clothes', amount: 5.2, author: @user, group_ids: [group.id])
-      BudgetTransaction.create(name: 'T-shirt', amount: 1, author: @user, group_ids: [group.id])
-      false_group = Group.create(name: 'Laundry', icon: 'icon', author: @user)
-      BudgetTransaction.create(name: 'other group', amount: 10, author: @user, group_ids: [false_group.id])
+      create(:budget_transaction, amount: 5.2, author: @user, group_ids: [group.id])
+      create(:budget_transaction, amount: 1, author: @user, group_ids: [group.id])
+      false_group = create(:group, author: @user)
+      create(:budget_transaction, amount: 10, author: @user, group_ids: [false_group.id])
       expect(subject.total_amount.to_f).to be(6.2)
     end
   end
