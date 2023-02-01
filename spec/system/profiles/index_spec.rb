@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Profile', type: :system do
   subject do
-    User.create(name: 'Tom', email: 'tom@example.com', password: 'password')
+    create(:user, name: 'Tom', email: 'tom@example.com', password: 'password')
 
     visit new_user_session_path
     fill_in 'Email', with: 'tom@example.com'

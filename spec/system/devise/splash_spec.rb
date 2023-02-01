@@ -10,7 +10,7 @@ RSpec.describe 'Splash page', type: :system do
 
   it 'should not be displayed when the user is logged in' do
     visit new_user_session_path
-    User.create(name: 'Tester', email: 'capybara@test.com', password: 'abc123')
+    create(:user, email: 'capybara@test.com', password: 'abc123')
     within('#new_user') do
       fill_in 'Email', with: 'capybara@test.com'
       fill_in 'Password', with: 'abc123'

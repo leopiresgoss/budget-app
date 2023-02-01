@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe BudgetTransaction, type: :model do
   subject do
-    @user = User.create(name: 'Jhon', email: 'test123@test.com', password: 'abc123', balance: 20)
+    @user = create(:user)
     @group = @user.groups.create(name: 'group1', icon: 'icon')
-    BudgetTransaction.new(name: 'Buy T-shirt', amount: 5.69, author: @user, group_ids: [@group.id])
+    build(:budget_transaction, amount: 5.69, author: @user, group_ids: [@group.id])
   end
 
   before { subject.save }

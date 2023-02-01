@@ -31,7 +31,7 @@ RSpec.describe 'Sign-up page', type: :system do
 
   it 'When I click the submit button after trying sign-up with an existing email, I get a detailed error' do
     visit new_user_registration_path
-    User.create(id: 21, name: 'Tester', email: 'capybara@test.com', password: 'abc123')
+    create(:user, email: 'capybara@test.com', password: 'abc123')
     within('#new_user') do
       fill_in 'Name', with: 'Jhon Capybara'
       fill_in 'Email', with: 'capybara@test.com'
